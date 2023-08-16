@@ -1,0 +1,23 @@
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+  "title": "third post",
+  "description": "This is a post"
+}
+
+### 
+GET http://localhost:3000/api/posts
+
+###
+GET http://localhost:3000/api/posts/64dce52991ad2fedcf116690
+
+###
+PATCH http://localhost:3000/api/posts/64dce52991ad2fedcf116690
+
+{
+  "title": "0 post"
+}
+
+###
+DELETE http://localhost:3000/api/posts/64dcf13091ad2fedcf116696
