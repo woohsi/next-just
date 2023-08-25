@@ -1,3 +1,4 @@
+
 const PostsLayout = ({children}: {children: React.ReactNode}) => {
   return ( 
     <div className="bg-blue-600 p-4 min-h-screen">

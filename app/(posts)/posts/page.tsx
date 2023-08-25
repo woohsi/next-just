@@ -2,6 +2,7 @@ import { PostType } from "@/types/PostType";
 import axios from "axios";
 
 import Link from 'next/link'
+import LoginBtn from "./login-btn";
 
 // export const revalidate = 20
 // export const dynamic = 'force-dynamic'
@@ -26,6 +27,9 @@ const PostsPage = async ({
 
   return ( 
     <div>
+      <div>
+        <LoginBtn />
+      </div>
       <h1 className="text-3xl">All Posts</h1>
       <ul>
         {posts.map((post) => (
