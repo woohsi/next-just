@@ -1,14 +1,21 @@
 import prisma from "@/lib/prismadb"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
+import { getToken } from "next-auth/jwt"
 
-export const POST = async (request: Request) => {
+export const POST = async (request: NextRequest) => {
   try {
+    const token = await getToken({ req: request })
+    if (token) {
+      // Signed in
+      console.log("JSON Web Token", JSON.stringify(token, null, 2))
+    }
     const body = await request.json()
     const {title, description} = body
     const newPost = await prisma.post.create({
       data: {
         title,
-        description
+        description,
+        content: "content",
       }
     })
     return NextResponse.json(newPost)

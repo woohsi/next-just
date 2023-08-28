@@ -1,14 +1,14 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 
-const PostPage = (
+const PostPage = async (
   { params }: { params: {id: string} }
 ) => {
-  const session = getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
  
   return ( 
       <div>
-        page
+      page { params.id }
         <pre>
           {JSON.stringify(session)}
         </pre>

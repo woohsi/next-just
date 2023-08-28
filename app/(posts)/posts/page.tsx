@@ -19,9 +19,9 @@ const PostsPage = async ({
   const posts = await response.json() as PostType[]
   console.log('posts: ', posts)
 
-  const response2 = await fetch(`http://localhost:3001/posts/${searchParams.id}`)
-  const post = await response2.json() as PostType
-  console.log('post: ', post)
+  // const response2 = await fetch(`http://localhost:3001/posts/${searchParams.id}`)
+  // const post = await response2.json() as PostType
+  // console.log('post: ', post)
   // const response3 = await axios.get<PostType[]>("http://localhost:3001/posts")
   // const posts = response3.data
 

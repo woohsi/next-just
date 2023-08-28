@@ -2,7 +2,7 @@ POST http://localhost:3000/api/posts
 Content-Type: application/json
 
 {
-  "title": "third post",
+  "title": "4th post",
   "description": "This is a post"
 }
 
@@ -21,3 +21,22 @@ PATCH http://localhost:3000/api/posts/64dce52991ad2fedcf116690
 
 ###
 DELETE http://localhost:3000/api/posts/64dcf13091ad2fedcf116696
+
+###
+http://localhost:3000/api/auth/providers
+
+###
+PATCH http://localhost:3000/api/signup
+
+{
+  "email": "bottxiang@gmail.com",
+  "password": "xiang"
+}
+
+###
+PATCH http://localhost:3000/api/signup
+
+{
+  "email": "jj@gmail.com",
+  "password": "xiang"
+}
