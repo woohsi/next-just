@@ -51,7 +51,7 @@ const SearchInput = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <div className="flex gap-x-3 mt-2">
+      <div className="flex gap-x-3 mt-2 text-xs sm:text-base">
         <div className="space-x-1">
           <input type="radio" id="vietviet" value="vietviet"
             checked={category === 'vietviet'}

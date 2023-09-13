@@ -73,16 +73,16 @@ const Sidebar = ({ children }: SidebarProps) => {
 
           </div>
         </div>
-        <Box className="flex flex-col gap-y-4 px-2 sm:px-5 py-4 pb-96">
+        <Box className="flex flex-col gap-y-4 px-2 sm:px-5 py-4">
           {routes.map((item) => (
             <SidebarItem key={item.label} {...item} />
           ))
 
           }
         </Box>
-        <Box className="flex flex-col gap-y-4 px-5 py-4 overflow-y-auto h-full">
-          
-        </Box>
+          {/* <Box className="flex flex-col gap-y-4 px-5 py-4 overflow-y-auto h-full">
+            
+          </Box> */}
       </div>
       <main className="h-full flex-1 overflow-y-auto py-2">
         {children}
