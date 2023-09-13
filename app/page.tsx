@@ -24,7 +24,7 @@ interface HomePageProps {
 export const revalidate = 20
 
 const getData = async (c: string | null, w: string | null): Promise<any> => {
-  const res = await fetch(`http://localhost:3000/api/q?category=${c}&word=${w}`, {
+  const res = await fetch(`/api/q?category=${c}&word=${w}`, {
     headers: headers()
   })
   return res.json()
