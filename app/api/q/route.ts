@@ -16,15 +16,14 @@ export const GET = async (
   request: Request
 ) => {
   try {
-    const session = await getServerSession(authOptions) as {userId: string}
 
     const { searchParams } = new URL(request.url)
     const category = searchParams.get('category') as string
     const word = searchParams.get('word') as string
+    const userId = searchParams.get('userId') as string
 
     const headerList = headers()
     const forwarded = headerList.get('x-forwarded-for')
-    console.log(headers())
     const ip = forwarded ? forwarded.split(/,/)[0] : "1.1.1.1"
 
     let data;
@@ -49,7 +48,7 @@ export const GET = async (
       data: {
         word: word,
         category: category,
-        userId: session?.userId,
+        userId: userId,
         clientIp: ip,
         location: await getLocation(ip)
       }
