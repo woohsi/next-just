@@ -62,17 +62,18 @@ const Sidebar = ({ children }: SidebarProps) => {
           gap-y-2
           bg-black
           h-full
-          w-[200px]
+          w-15
+          sm:w-[200px]
           p-2
         ">
         <div>
-          <div className="flex justify-center items-center py-2 text-5xl  text-white bg-slate-800 hover:bg-slate-700 font-medium rounded-sm opacity-85 mb-2">
+          <div className="flex justify-center items-center py-2 text-2xl  text-white bg-slate-800 hover:bg-slate-700 font-medium rounded-sm opacity-85 mb-2">
             {/* bg-gradient-to-r from-slate-500 */}
-            <Link href={"/"}>G<span className="text-yellow-400 text-2xl "><span>O</span><span className=" text-yellow-400 -ml-[7px]">V</span><span className="text-yellow-400 -ml-[4px]">N</span></span></Link>
+            <Link href={"/"}>G<span className="text-yellow-400 text-xl hidden sm:inline "><span>O</span><span className=" text-yellow-400 -ml-[7px]">V</span><span className="text-yellow-400 -ml-[4px]">N</span></span></Link>
 
           </div>
         </div>
-        <Box className="flex flex-col gap-y-4 px-5 py-4 pb-96">
+        <Box className="flex flex-col gap-y-4 px-2 sm:px-5 py-4 pb-96">
           {routes.map((item) => (
             <SidebarItem key={item.label} {...item} />
           ))

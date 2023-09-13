@@ -34,7 +34,6 @@ const getData = async (c: string | null, w: string | null): Promise<any> => {
 export default async function Home({
   searchParams
 }: HomePageProps) {
-  const session = await getServerSession(authOptions)
 
   let data: any;
 
