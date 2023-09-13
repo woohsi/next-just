@@ -42,7 +42,7 @@ export default async function Home({
   try {
     data = await getData(searchParams.category, searchParams.word)
   } catch (error) {
-    console.log("Something wrong")
+    console.log("Something wrong: ", error)
   }
   return (
     <div className='
