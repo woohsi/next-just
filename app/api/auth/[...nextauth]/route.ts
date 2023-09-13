@@ -2,14 +2,16 @@ import NextAuth, { type AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import prisma from "@/lib/prismadb";
+import prisma from "@/libs/prismadb";
 import { compare } from 'bcrypt'
+
 export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
     maxAge: 60 * 60
   },
-   jwt: {
+  debug: process.env.NODE_ENV === 'development',
+  jwt: {
     // The maximum age of the NextAuth.js issued JWT in seconds.
     // Defaults to `session.maxAge`.
     // maxAge:  30,
@@ -26,7 +28,12 @@ export const authOptions: AuthOptions = {
     //   return baseUrl
     // },
     async session({ session, user, token }) {
-      return { ...session, id: "dfdsfdfdfsf"}
+      const currentUser = await prisma.user.findUnique({
+        where: {
+          email: session?.user?.email as string,
+        }
+      })
+      return { ...session, userId: currentUser?.id}
     },
     async jwt({ token, user, account, profile }) {
       return token
@@ -41,7 +48,8 @@ export const authOptions: AuthOptions = {
   },
   events: {
     signIn: ({ user, account, profile, isNewUser }) => {
-      console.log(user, account, profile, isNewUser)
+      // console.log(user, account, profile, isNewUser)
+      console.log("NODE_ENV", process.env.NODE_ENV)
     },
     session: ({ token, session }) => {
       // console.log('token: \n', token, 'session: \n', session)

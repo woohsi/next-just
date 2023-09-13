@@ -1,21 +1,21 @@
 
-import NewUser from "@/app/(posts)/new-user/page"
-import prisma from "@/lib/prismadb"
+import NewUser from "@/app/(dict)/new-user/page"
+import prisma from "@/libs/prismadb"
 import { NextResponse } from "next/server"
 import { hash } from "bcrypt"
 
-export const PATCH = async (request: Request) => {
+export const POST = async (request: Request) => {
   try {
     const body = await request.json()
-    const { email, password } = body
+    const { username, email, password } = body
     const existingUser = await prisma.user.findUnique({
       where: {
         email: email
       }
     })
-    console.log(existingUser)
     let newUser
     if (existingUser) {
+      console.log('User exists(set password): ', email)
       newUser = await prisma.user.update({
         where: {
           email: email
@@ -25,9 +25,11 @@ export const PATCH = async (request: Request) => {
         }
       })
     } else {
+      console.log('Create new user: ', email)
       newUser = await prisma.user.create({
         data: {
           email: email,
+          username: username,
           hashedPassword: await hash(password, 12)
         }
       })

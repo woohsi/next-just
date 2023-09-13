@@ -4,7 +4,11 @@ import { Inter } from 'next/font/google'
 import AuthProvider from './providers'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from './api/auth/[...nextauth]/route'
-import { SessionProvider } from 'next-auth/react'
+import { Toaster } from 'react-hot-toast'
+import RegisterModal from '@/components/modals/RegisterModal'
+import LoginModal from '@/components/modals/LoginModal'
+import EditModal from '@/components/modals/EditModal'
+import Sidebar from '@/components/Sidebar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,15 +21,22 @@ export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
-  }) {
-  
+}) {
+
   const session = await getServerSession(authOptions)
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider session={session}>
-          {children}
+          <Toaster />
+          <RegisterModal />
+          <LoginModal />
+          <EditModal />
+          <Sidebar>
+            {children}
+          </Sidebar>
+
         </AuthProvider>
       </body>
     </html>

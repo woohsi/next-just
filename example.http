@@ -29,6 +29,7 @@ http://localhost:3000/api/auth/providers
 PATCH http://localhost:3000/api/signup
 
 {
+  "username": "bobo",
   "email": "bottxiang@gmail.com",
   "password": "xiang"
 }
@@ -37,6 +38,10 @@ PATCH http://localhost:3000/api/signup
 PATCH http://localhost:3000/api/signup
 
 {
+  "username": "jj",
   "email": "jj@gmail.com",
   "password": "xiang"
 }
+
+###
+GET http://localhost:3000/api/current

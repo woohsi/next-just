@@ -13,11 +13,11 @@ const Timer = () => {
       clearInterval(interval)
     }
   }, [])
-  return ( 
+  return (
     <div>
-        {seconds}
+      {seconds}
     </div>
-   );
+  );
 }
- 
+
 export default Timer;

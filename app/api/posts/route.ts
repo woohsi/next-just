@@ -1,21 +1,24 @@
-import prisma from "@/lib/prismadb"
+import prisma from "@/libs/prismadb"
 import { NextRequest, NextResponse } from "next/server"
 import { getToken } from "next-auth/jwt"
+import serverAuth from "@/libs/serverAuth"
 
 export const POST = async (request: NextRequest) => {
   try {
+    const { currentUser } = await serverAuth();
     const token = await getToken({ req: request })
     if (token) {
       // Signed in
       console.log("JSON Web Token", JSON.stringify(token, null, 2))
     }
     const body = await request.json()
-    const {title, description} = body
+    const {title, description, body: content} = body
     const newPost = await prisma.post.create({
       data: {
         title,
         description,
-        content: "content",
+        content: content,
+        userId: currentUser.id
       }
     })
     return NextResponse.json(newPost)
@@ -27,8 +30,35 @@ export const POST = async (request: NextRequest) => {
 
 export const GET = async (request: Request) => {
   try {
-  
-    const posts = await prisma.post.findMany()
+    const { searchParams } = new URL(request.url)
+    const userId = searchParams.get('userId');
+
+    let posts;
+    if (userId) {
+      posts = await prisma.post.findMany({
+        where: {
+          userId
+        },
+        include: {
+          user: true,
+          comments: true
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
+      
+    } else {
+      posts = await prisma.post.findMany({
+        include: {
+          user: true,
+          comments: true
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      })
+    }
     // throw new Error("hihi")
     return NextResponse.json(posts)
   } catch (err) {

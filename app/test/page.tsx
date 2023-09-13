@@ -1,11 +1,11 @@
 import Timer from "@/components/Timer";
 
 const TestPage = () => {
-  return ( 
+  return (
     <div>
       <Timer />
     </div>
-   );
+  );
 }
- 
+
 export default TestPage;

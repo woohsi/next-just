@@ -11,43 +11,92 @@ datasource db {
 }
 
 model Post {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String?
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String?
   description String?
-  content   String
-  published Boolean?
+  content     String
+  published   Boolean?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  likedIds    String[] @db.ObjectId
+
+  userId String? @db.ObjectId
+
+  user User? @relation(fields: [userId], references: [id])
+
+  comments Comment[]
+}
+
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  body      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  userId    String? @db.ObjectId
-  user      User? @relation(fields: [userId], references: [id])
+
+  postId String @db.ObjectId
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model his {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  category  String
+  word     String
+  userId    String @db.ObjectId
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clientIp  String?
+  location  String?
+  createdAt DateTime @default(now())
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  hashedPassword      String?
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  username       String?   @unique
+  email          String?   @unique
+  bio            String?
+  emailVerified  DateTime?
+  image          String?
+  coverImage     String?
+  profileImage   String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  followingIds   String[]  @db.ObjectId
+  location       String?
+  birthday       DateTime?
 
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  comments      Comment[]
+  notifications Notification[]
+  hiss          his[]
 }
 
 model Account {
-  id                 String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String  @db.ObjectId
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String? 
-  access_token       String?
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?
-  session_state      String?
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -62,11 +111,22 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-
 model VerificationToken {
-  identifier String @id @map("_id") @db.ObjectId
+  identifier String   @id @map("_id") @db.ObjectId
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model ve {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  title     String?
+  definitions Json[]
+}
+
+model vv {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  title     String?
+  definitions Json[]
 }
