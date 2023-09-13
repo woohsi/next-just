@@ -24,6 +24,7 @@ interface HomePageProps {
 export const revalidate = 20
 
 const getData = async (c: string | null, w: string | null): Promise<any> => {
+  console.log('test_url', `https://${process.env.VERCEL_URL}/api/q?category=${c}&word=${w}`)
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/q?category=${c}&word=${w}`, {
     headers: headers()
   })
