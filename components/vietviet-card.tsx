@@ -53,7 +53,7 @@ const VietvietCard: React.FC<VietvietCardProps> = ({ data }) => {
 
   let no: number;
   return (
-    <div>
+    <div className="text-lg font-thin px-2">
       {/* <h3>{data?.data1?.title}</h3> */}
       <ul>
         {data?.definitions?.map((definition: Definition, index: number, definitions: Definition[]) => {
@@ -62,7 +62,7 @@ const VietvietCard: React.FC<VietvietCardProps> = ({ data }) => {
           else no++
           return (
             <li key={definition.id}>
-              {firstOf && <Badge className="bg-yellow-500 text-neutral-200">{definition.type}</Badge>}
+              {firstOf && <Badge className="bg-orange-500 text-black">{definition.type}</Badge>}
               <div>
                 <Badge className={`bg-slate-400 font-thin`}>{no}</Badge>&nbsp;
                 <span className="
@@ -70,7 +70,7 @@ const VietvietCard: React.FC<VietvietCardProps> = ({ data }) => {
               </div>
               <ul>
                 {
-                  definition.examples.map((example, i) => <li key={i} className="font-light ml-10 text-neutral-400">{example}</li>)
+                  definition.examples.map((example, i) => <li key={i} className="font-light ml-2 sm:ml-10 text-neutral-400">{example}</li>)
                 }
               </ul>
             </li>

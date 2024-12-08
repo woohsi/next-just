@@ -1,5 +1,3 @@
-
-
 import Badge from "@/components/Badge";
 
 type T1 = {

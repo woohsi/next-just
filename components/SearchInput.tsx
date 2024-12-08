@@ -50,36 +50,46 @@ const SearchInput = () => {
         placeholder="Searh words here ..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        className="text-yellow-500 font-bold text-3xl"
       />
       <div className="flex gap-x-3 mt-2 text-xs sm:text-base">
-        <div className="space-x-1">
+        <label className="space-x-1 flex items-center cursor-pointer">
           <input type="radio" id="vietviet" value="vietviet"
             checked={category === 'vietviet'}
             onChange={handleRadioChange}
+            className="hidden peer"
           />
-          <label htmlFor="vietviet">Viet-Viet</label>
-        </div>
-        <div className="space-x-1">
+          
+          <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-green-500 peer-checked:bg-green-500 transition-colors"></span>
+          <span>Viet-Viet</span>
+        </label>
+        <label className="space-x-1 flex items-center cursor-pointer">
           <input type="radio" id="viettrung" value="viettrung"
             checked={category === 'viettrung'}
             onChange={handleRadioChange}
+            className="hidden peer"
           />
-          <label htmlFor="viettrung">Viet-Trung</label>
-        </div>
-        <div className="space-x-1">
+          <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-red-500 peer-checked:bg-red-500 transition-colors"></span>
+          <span>Viet-Trung</span>
+        </label>
+        <label className="space-x-1 flex items-center cursor-pointer">
           <input type="radio" id="vietanh" value="vietanh"
             checked={category === 'vietanh'}
             onChange={handleRadioChange}
+            className="hidden peer"
           />
-          <label htmlFor="vietanh">Viet-Anh</label>
-        </div>
-        <div className="space-x-1">
+          <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-blue-500 peer-checked:bg-blue-500 transition-colors"></span>
+          <span>Viet-Anh</span>
+        </label>
+        <label className="space-x-1 flex items-center cursor-pointer">
           <input type="radio" id="trungviet" value="trungviet"
             checked={category === 'trungviet'}
             onChange={handleRadioChange}
+            className="hidden peer"
           />
-          <label htmlFor="trungviet">Trung-Viet</label>
-        </div>
+            <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-cyan-500 peer-checked:bg-cyan-500 transition-colors"></span>
+            <span>Trung-Vet</span>
+        </label>
       </div>
       {/* <div>
         <RadioExample />
