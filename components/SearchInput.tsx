@@ -47,7 +47,7 @@ const SearchInput = () => {
   return (
     <div className="flex flex-col ">
       <Input
-        placeholder="Searh words here ..."
+        placeholder="Search words here ..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
         className="text-yellow-500 font-bold text-3xl"
@@ -61,7 +61,7 @@ const SearchInput = () => {
           />
           
           <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-green-500 peer-checked:bg-green-500 transition-colors"></span>
-          <span>Viet-Viet</span>
+          <span className="px-0.5 peer-checked:border-green-500 peer-checked:bg-green-500 peer-checked:rounded transition-colors">Viet-Viet</span>
         </label>
         <label className="space-x-1 flex items-center cursor-pointer">
           <input type="radio" id="viettrung" value="viettrung"
@@ -70,7 +70,7 @@ const SearchInput = () => {
             className="hidden peer"
           />
           <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-red-500 peer-checked:bg-red-500 transition-colors"></span>
-          <span>Viet-Trung</span>
+          <span className="px-0.5 peer-checked:border-red-500 peer-checked:bg-red-500 peer-checked:rounded transition-colors">Viet-Trung</span>
         </label>
         <label className="space-x-1 flex items-center cursor-pointer">
           <input type="radio" id="vietanh" value="vietanh"
@@ -78,8 +78,8 @@ const SearchInput = () => {
             onChange={handleRadioChange}
             className="hidden peer"
           />
-          <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-blue-500 peer-checked:bg-blue-500 transition-colors"></span>
-          <span>Viet-Anh</span>
+          <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-blue-500 peer-checked:bg-blue-500 transition-colos"></span>
+          <span className="px-0.5 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:rounded transition-colors">Viet-Anh</span>
         </label>
         <label className="space-x-1 flex items-center cursor-pointer">
           <input type="radio" id="trungviet" value="trungviet"
@@ -88,7 +88,7 @@ const SearchInput = () => {
             className="hidden peer"
           />
             <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-cyan-500 peer-checked:bg-cyan-500 transition-colors"></span>
-            <span>Trung-Vet</span>
+          <span className="px-0.5 peer-checked:border-cyan-500 peer-checked:bg-cyan-500 peer-checked:rounded transition-colors">Trung-Vet</span>
         </label>
       </div>
       {/* <div>

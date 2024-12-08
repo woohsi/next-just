@@ -38,13 +38,13 @@ const Header: React.FC<HeaderProps> = ({
       className
     )}>
       <div className="flex justify-between items-center mb-2">
-        <div className="text-3xl font-extrabold">
+        <div className="text-2xl font-extrabold">
           {/* <div className="flex items-center p-1 text-xl text-white bg-slate-600 font-medium rounded-sm opacity-85">
             G<span className="text-yellow-400">OVN</span>
           </div> */}
           {title}
         </div>
-        <div className="hidden sm:block">
+        {/* <div className="hidden sm:block">
           {currentUser ? (
             <div className="flex gap-x-4 items-center">
               <SButton
@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({
                 </div>
               </div>
           )}
-        </div>
+        </div> */}
       </div>
       {/* <div>
         { JSON.stringify(currentUser) }

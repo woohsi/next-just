@@ -15,7 +15,7 @@ type Page = {
 
 let idxs: Index[] = [];
 
-const collator = new Intl.Collator('vi', { sensitivity: 'base' });
+const collator = new Intl.Collator('vi', { sensitivity: 'accent' });
 
 const trim = (s: string): string => s.trim();
 
