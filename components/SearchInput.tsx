@@ -88,7 +88,7 @@ const SearchInput = () => {
             className="hidden peer"
           />
             <span className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-cyan-500 peer-checked:bg-cyan-500 transition-colors"></span>
-          <span className="px-0.5 peer-checked:border-cyan-500 peer-checked:bg-cyan-500 peer-checked:rounded transition-colors">Trung-Vet</span>
+          <span className="px-0.5 peer-checked:border-cyan-500 peer-checked:bg-cyan-500 peer-checked:rounded transition-colors">Trung-Viet</span>
         </label>
       </div>
       {/* <div>

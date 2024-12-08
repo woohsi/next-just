@@ -68,7 +68,7 @@ export default async function Home({
       <div>
         {searchParams.category == 'trungviet' && <p>Not available now, but trung viet dict will be coming soon</p>}
       </div>
-      { !data && <p>Find nothing ;(</p>}
+      { !data && <p>Nothing found ;(</p>}
       {/* <pre>
         {JSON.stringify(session, null, "  ")}
       </pre> */}

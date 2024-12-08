@@ -2,10 +2,12 @@ import prisma from "@/libs/prismadb"
 import serverAuth from "@/libs/serverAuth";
 import { getServerSession } from "next-auth/next";
 import { NextRequest, NextResponse } from "next/server"
+import { NextApiRequest, NextApiResponse } from "next"
 import { authOptions } from "../auth/[...nextauth]/route";
-import { getGeolocation, getLocation } from "@/libs/utils";
+import { GetIpAddress, GetLocation } from "@/libs/geoip";
 import { headers } from "next/headers";
 import find from "@/libs/findPage";
+import { getLocation } from "@/libs/utils";
 
 const CATEGORY_VV = 'vietviet';
 const CATEGORY_VE = 'vietanh';
@@ -14,18 +16,23 @@ const CATEGORY_CV = 'trungviet';
 
 
 export const GET = async (
-  request: Request
+  request: NextRequest
 ) => {
   try {
 
-    const { searchParams } = new URL(request.url)
+    // console.log(`url: ${request.url}, ${request.query}`)
+    // const { category, word, userId } = request.query
+    const {searchParams} = new URL(request.url!)
     const category = searchParams.get('category') as string
     const word =  searchParams.get('word') as string
     const userId = searchParams.get('userId') as string
 
-    const headerList = headers()
-    const forwarded = headerList.get('x-forwarded-for')
-    const ip = forwarded ? forwarded.split(/,/)[0] : "1.1.1.1"
+    const headersList = headers()
+    const userAgent = headersList.get('x-forwarded-for')
+    headersList.forEach((v, k) => {
+      console.log(`${k}: ${v}`)
+    })
+    console.log(`address: ${await getLocation(await GetIpAddress(request))}`)
 
     let data;
 
@@ -57,27 +64,27 @@ export const GET = async (
       console.log("viettrung data", data)
     }
     
-    if (userId === 'undefined') {
+    // if (userId === 'undefined') {
       
-      await prisma.his.create({
-        data: {
-          word: word,
-          category: category,
-          clientIp: ip,
-          location: await getLocation(ip)
-        }
-      }) 
-    } else {
-      await prisma.his.create({
-        data: {
-          word: word,
-          category: category,
-          userId: userId,
-          clientIp: ip,
-          location: await getLocation(ip)
-        }
-      }) 
-    }
+    //   await prisma.his.create({
+    //     data: {
+    //       word: word,
+    //       category: category,
+    //       clientIp: ip,
+    //       location: await getLocation(ip)
+    //     }
+    //   }) 
+    // } else {
+    //   await prisma.his.create({
+    //     data: {
+    //       word: word,
+    //       category: category,
+    //       userId: userId,
+    //       clientIp: ip,
+    //       location: await getLocation(ip)
+    //     }
+    //   }) 
+    // }
 
     
     console.log("[WORDS_GET]", `Got data ${data}`)
