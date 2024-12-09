@@ -3,6 +3,7 @@ import { getClientIp } from 'request-ip';
 import isLocalhost from 'is-localhost-ip'
 import path from 'path';
 import type { NextRequest } from 'next/server';
+import { ipAddress } from '@vercel/functions'
 
 let lookup: Reader<CityResponse>;
 
@@ -11,6 +12,8 @@ export async function GetIpAddress(req: NextRequest | any) {
   // if (req.headers['cf-connecting-ip']) {
   //   return String(req.headers['cf-connecting-ip']);
   // }
+
+  console.log('ipAddress: ', ipAddress(req))
 
   let clientIp: string | null = null;
   try {

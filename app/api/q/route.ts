@@ -33,6 +33,7 @@ export const GET = async (
       console.log(`${k}: ${v}`)
     })
     console.log(`address: ${await getLocation(await GetIpAddress(request))}`)
+    console.log(`request.ip: ${request.ip}`)
 
     let data;
 

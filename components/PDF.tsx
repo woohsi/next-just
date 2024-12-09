@@ -5,6 +5,7 @@ import { Document, Page } from 'react-pdf';
 import { isMobile } from 'react-device-detect';
 
 import { pdfjs } from 'react-pdf';
+import { GetIpAddress } from '@/libs/geoip';
 
 // pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 //   'pdfjs-dist/build/pdf.worker.min.mjs',
